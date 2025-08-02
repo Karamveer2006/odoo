@@ -1,0 +1,220 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+::selection{
+    background-color: var(--msc-theme-black-opacity);
+}
+@font-face {
+    font-family: "poppins-regular";
+    src: url("../fonts/Poppins/Poppins-Regular.ttf");
+}
+@font-face {
+    font-family: "poppins-italic";
+    src: url("../fonts/Poppins/Poppins-Italic.ttf");
+}
+@font-face {
+    font-family: "poppins-medium";
+    src: url("../fonts/Poppins/Poppins-Medium.ttf");
+}
+@font-face {
+    font-family: "poppins-semibold";
+    src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+}
+@font-face {
+    font-family: "poppins-bold";
+    src: url("../fonts/Poppins/Poppins-Bold.ttf");
+}
+@font-face {
+    font-family: "poppins-light";
+    src: url("../fonts/Poppins/Poppins-Light.ttf");
+}
+@font-face {
+    font-family: "stylish-cursive";
+    src: url("../fonts/cursive-stylish/ShadowsIntoLight-Regular.ttf");
+}
+@font-face {
+    font-family: "monostat-bold";
+    src: url(../fonts/Montserrat/static/Montserrat-ExtraBold.ttf);
+}
+@font-face{
+    font-family: "inter-regular";
+    src: url("../fonts/Inter/static/Inter-Regular.ttf");
+}
+@font-face {
+    font-family: "roboto-regular";
+    src: url("../fonts/Roboto/static/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: "roboto-medium";
+    src: url("../fonts/Roboto/static/Roboto-Medium.ttf");
+}
+@font-face {
+    font-family: "roboto-semibold";
+    src: url("../fonts/Roboto/static/Roboto-SemiBold.ttf");
+}
+@font-face {
+    font-family: "roboto-bold";
+    src: url("../fonts/Roboto/static/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: "roboto-extra-bold";
+    src: url("../fonts/Roboto/static/Roboto-ExtraBold.ttf");
+}
+@font-face {
+    font-family: "stylish";
+    src: url("../fonts/cursive-stylish/ShadowsIntoLight-Regular.ttf");
+}
+@font-face {
+    font-family: "serif-medium";
+    src: url("../fonts/Playfair/static/PlayfairDisplay-Medium.ttf");
+}
+@font-face {
+    font-family: "serif-bold";
+    src: url("../fonts/Playfair/static/PlayfairDisplay-Bold.ttf");
+}
+@font-face {
+    font-family: "roboto-cursive";
+    src: url("../fonts/Roboto/static/Roboto-SemiBoldItalic.ttf");
+}
+:root{
+    --msc-font-global-serif-medium:"serif-medium";
+    --msc-font-global-serif-bold:"serif-bold";
+    --msc-font-regular:"poppins-regular";
+    --msc-font-medium:"poppins-medium";
+    --msc-font-semibold:"poppins-semibold";
+    --msc-font-bold:"poppins-bold";
+    --msc-font-italic:"poppins-italic";
+    --msc-font-light:"poppins-light";
+    --msc-font-theme-cursive:"stylish-cursive";
+    --msc-font-theme-inter:"inter-regular";
+    --msc-font-theme-mono-bold:"monostat-bold";
+    --msc-font-global-regular:"roboto-regular";
+    --msc-font-global-medium:"roboto-medium";
+    --msc-font-global-semibold:"roboto-semibold";
+    --msc-font-global-bold:"roboto-bold";
+    --msc-font-global-extrabold:"roboto-extra-bold";
+    --msc-font-global-italic:"roboto-cursive";
+    --msc-theme-font-stylish-cursive:"stylish";
+    --msc-dark: #000000;
+    --msc-white:#fff;
+    --msc-light-text: #5b5b5b;
+    --msc-primary: #fbae15;
+    --msc-blue: #075298;
+    --msc-theme-danger: #CB2128;
+    --msc-light: #BBBDBF;
+    --msc-light-grey: #6c6c6c;
+    --msc-white: #fff;
+    --msc-success: #06c516ec;
+    --msc-danger: #c52f06ec;
+    --msc-warning: #ffd900ec;
+    --msc-light-purple:#c36;
+    --msc-med-black:#151515;
+    --msc-red: #FF0000;
+    --msc-light-color:rgb(244, 244, 244);
+    --msc-orange:rgba(255, 68, 0, 0.786);
+    --msc-light-opacity:#ffffff16;
+    --msc-theme-opacity: #141516d4;
+    --msc-theme-black-opacity: #050505c2;
+    --msc-border-color:#EFEFEF;
+    --msc-theme-light-red: #ff8a8a;
+    --msc-theme-gradient:linear-gradient(to left bottom,var(--msc-theme-primary),var(--msc-theme-orange));
+    --msc-appoint-gradient:linear-gradient(324deg, #08275a, #2d8c9f);
+    --msc-theme-global-dark-blue: #1b2f3e;
+    --msc-theme-global-blue: #004461;
+    --msc-theme-global-new-blue: #004271;
+    --msc-theme-global-lightblue: #0379BE;
+    --msc-theme-global-shadow-color: #F0F0F0;
+    --msc-theme-global-blue-tone: #D5D5D5;
+    --msc-theme-global-grey: #666666;
+    --msc-theme-black-shade: #363636;
+    --msc-theme-light-grey-tone: #F7F7F7;
+    --msc-theme-med-grey-tone: #D9D9D9;
+    --msc-theme-light-blue-tone: #F6F9FF;
+    --msc-theme-pink-tone: #fff1f1;
+    --msc-theme-lightgreen-tone: #F2FFFA;
+    --msc-theme-oil-black: #3A3736;
+    --msc-theme-gold-pink: #ffdeec;
+    --msc-theme-light-gold-pink: #F4E9FF;
+    --msc-theme-light-med-blue: #CCF1FF;
+    --msc-theme-linear-gradient: linear-gradient(118deg, #3FAC8F, #007d5c); 
+    --msc-theme-linear-gradient-tech: linear-gradient(118deg, #ff2d20, var(--msc-danger)); 
+    --msc-theme-global-purple: #a2a5df; 
+    --msc-theme-footer-color: #F4F4F4;
+    --msc-theme-footer-dark-color: rgb(14 25 30);
+    --msc-theme-slate-blue: #d2e6fd;
+    --msc-theme-light-pink: #ff8fb5;
+    --msc-theme-soft-red: #fef3f3;
+    --msc-theme-med-light-blue: #43baff;
+    --msc-theme-3d-grdient: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 80%);
+    --msc-theme-border-grey: #c7c7c7;
+    --msc-theme-bg-html: #e44d26;
+    --msc-theme-white-grey: #808080;
+    --msc-theme-med-light-blue:#a7deeb;
+    --mc-theme-am-dark-blue:#023047;
+    --msc-theme-am-extra-dark-blue: #03045e;
+    --msc-theme-am-med-blue: #275a73;
+    --msc-theme-am-light-blue:#8ecae6;
+    --msc-theme-am-med-light-blue:#209ebb;
+    --msc-theme-am-bg-color-blue-tone:#12424c;
+    --msc-theme-am-dark-yellow: #fbb400;
+}
+
+body {
+      overflow-x: hidden;
+      font-family: var(--msc-font-global-regular);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      width: 250px;
+      background-color: #fff;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      transition: left 0.3s ease;
+      z-index: 1050;
+      padding-top: 70px;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      border-bottom: 1px solid #f1f1f1;
+      color: #333;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #f9f9f9;
+      color: rgb(50, 184, 198);
+    }
+
+    .navbar-brand {
+      color: rgb(50, 184, 198) !important;
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1040;
+      display: none;
+    }
+
+    .menu-overlay.active {
+      display: block;
+    }

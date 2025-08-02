@@ -11,7 +11,7 @@
 - 🛡️ **Moderation Panel for Admins**
 - 📱 **Responsive UI with Mobile-First Design**
 - 🔒 **Authentication for Citizens and Moderators**
-- 📊 **Dashboard with Analytics (Upcoming)**
+- 📊 **Dashboard with Analytics**
 
 ## 🏗️ Tech Stack
 
