@@ -1,233 +1,14 @@
-{{-- resources/views/auth/register.blade.php --}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register - CivicTrack</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Bootstrap 5 --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- FontAwesome 5 --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background: #f8fafc;
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            min-height: 100vh;
-        }
-        
-        .register-wrapper {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        
-        .register-container {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 1rem;
-            overflow: hidden;
-            width: 100%;
-            max-width: 1000px;
-            margin: 2rem auto;
-        }
-        
-        .form-section {
-            padding: 3rem 2.5rem;
-        }
-        
-        .illustration-section {
-            background: #f8fafc;
-            padding: 3rem 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-left: 1px solid #e5e7eb;
-        }
-        
-        .brand-header {
-            margin-bottom: 2.5rem;
-        }
-        
-        .brand-header h1 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-        }
-        
-        .brand-header p {
-            color: #6b7280;
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        
-        .illustration-content h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-        
-        .illustration-content p {
-            color: #6b7280;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-        
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-        
-        .feature-list li {
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .feature-list li i {
-            color: #10b981;
-            margin-right: 0.75rem;
-            width: 16px;
-        }
-        
-        .form-floating > label {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-        
-        .form-control {
-            border: 1.5px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1rem 1rem;
-            font-size: 1rem;
-            height: auto;
-            background: #ffffff;
-            transition: border-color 0.15s ease-in-out;
-        }
-        
-        .form-control:focus {
-            border-color: #3b82f6;
-            box-shadow: none;
-            background: #ffffff;
-        }
-        
-        .form-control.is-invalid {
-            border-color: #ef4444;
-        }
-        
-        .invalid-feedback {
-            font-size: 0.85rem;
-            color: #ef4444;
-        }
-        
-        .btn-primary {
-            background: #3b82f6;
-            border: 1px solid #3b82f6;
-            border-radius: 0.75rem;
-            padding: 0.875rem 1.5rem;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.15s ease-in-out;
-        }
-        
-        .btn-primary:hover {
-            background: #2563eb;
-            border-color: #2563eb;
-            transform: translateY(-1px);
-        }
-        
-        .form-check-input {
-            border: 1.5px solid #d1d5db;
-            border-radius: 0.375rem;
-        }
-        
-        .form-check-input:checked {
-            background-color: #3b82f6;
-            border-color: #3b82f6;
-        }
-        
-        .form-check-label {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-        
-        .bottom-links {
-            text-align: center;
-            margin-top: 2rem;
-        }
-        
-        .bottom-links a {
-            color: #3b82f6;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .bottom-links a:hover {
-            color: #2563eb;
-            text-decoration: underline;
-        }
-        
-        .alert {
-            border: 1px solid #fecaca;
-            background: #fef2f2;
-            color: #dc2626;
-            border-radius: 0.75rem;
-            font-size: 0.9rem;
-        }
-        
-        .password-strength {
-            font-size: 0.8rem;
-            color: #6b7280;
-            margin-top: 0.5rem;
-        }
-        
-        .password-strength.weak { color: #ef4444; }
-        .password-strength.medium { color: #f59e0b; }
-        .password-strength.strong { color: #10b981; }
-        
-        .civic-svg {
-            max-width: 280px;
-            margin-bottom: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .register-container {
-                margin: 1rem;
-            }
-            
-            .illustration-section {
-                display: none;
-            }
-            
-            .form-section {
-                padding: 2rem 1.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="register-wrapper">
+<x-structure />
+<x-header />
+    <div class="auth-wrapper register-wrapper">
         <div class="container-fluid">
-            <div class="register-container">
+            <div class="auth-container">
                 <div class="row g-0 h-100">
                     {{-- Form Section --}}
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 order-1">
                         <div class="form-section">
                             <div class="brand-header">
-                                <h1><i class="fas fa-location-arrow text-primary"></i> CivicTrack</h1>
-                                <p>Create your account to get started</p>
+                                <h1><i class="fas fa-user-lock" style="color: rgb(50,184,198);"></i> Create your account</h1>
                             </div>
 
                             {{-- Error Messages --}}
@@ -238,7 +19,7 @@
                                 </div>
                             @endif
 
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register.submit') }}">
                                 @csrf
                                 
                                 <div class="form-floating mb-3">
@@ -310,19 +91,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-check mb-4">
-                                    <input class="form-check-input @error('terms') is-invalid @enderror" 
-                                           type="checkbox" 
-                                           name="terms" 
-                                           id="terms" 
-                                           required>
-                                    <label class="form-check-label" for="terms">
-                                        I agree to the <a href="#" class="text-decoration-none">Terms of Service</a> and <a href="#" class="text-decoration-none">Privacy Policy</a>
-                                    </label>
-                                    @error('terms')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
 
                                 <button type="submit" class="btn btn-primary w-100 mb-3">
                                     <i class="fas fa-user-plus"></i> Create Account
@@ -337,78 +105,86 @@
                     </div>
 
                     {{-- Illustration Section --}}
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 order-2">
                         <div class="illustration-section">
-                            {{-- SVG Illustration --}}
-                            <svg class="civic-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                                {{-- Background buildings --}}
-                                <rect x="50" y="120" width="60" height="100" fill="#e5e7eb" rx="4"/>
-                                <rect x="120" y="100" width="50" height="120" fill="#d1d5db" rx="4"/>
-                                <rect x="180" y="130" width="70" height="90" fill="#e5e7eb" rx="4"/>
-                                <rect x="260" y="110" width="55" height="110" fill="#d1d5db" rx="4"/>
-                                <rect x="325" y="140" width="45" height="80" fill="#e5e7eb" rx="4"/>
+                            {{-- SVG content here --}}
+                             <svg class="civic-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                {{-- Background elements --}}
+                                <rect x="0" y="0" width="400" height="300" fill="rgba(255,255,255,0.1)" rx="20"/>
                                 
-                                {{-- Windows --}}
-                                <rect x="60" y="135" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="75" y="135" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="90" y="135" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="60" y="150" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="75" y="150" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="90" y="150" width="8" height="8" fill="#f3f4f6"/>
+                                {{-- Community network illustration --}}
+                                <circle cx="200" cy="100" r="40" fill="rgba(255,255,255,0.2)"/>
+                                <circle cx="200" cy="100" r="25" fill="rgba(255,255,255,0.3)"/>
                                 
-                                <rect x="130" y="115" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="145" y="115" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="130" y="130" width="8" height="8" fill="#f3f4f6"/>
-                                <rect x="145" y="130" width="8" height="8" fill="#f3f4f6"/>
+                                {{-- Central user icon --}}
+                                <circle cx="200" cy="90" r="12" fill="rgba(255,255,255,0.9)"/>
+                                <rect x="190" y="105" width="20" height="25" fill="rgba(255,255,255,0.9)" rx="8"/>
                                 
-                                {{-- Street --}}
-                                <rect x="0" y="220" width="400" height="80" fill="#9ca3af"/>
-                                <line x1="0" y1="260" x2="400" y2="260" stroke="#ffffff" stroke-width="2" stroke-dasharray="10,5"/>
+                                {{-- Surrounding community members --}}
+                                <circle cx="120" cy="80" r="8" fill="rgba(255,255,255,0.7)"/>
+                                <rect x="115" y="90" width="10" height="15" fill="rgba(255,255,255,0.7)" rx="4"/>
                                 
-                                {{-- Street lights --}}
-                                <line x1="80" y1="220" x2="80" y2="190" stroke="#6b7280" stroke-width="3"/>
-                                <circle cx="80" cy="185" r="8" fill="#fbbf24"/>
-                                <line x1="200" y1="220" x2="200" y2="190" stroke="#6b7280" stroke-width="3"/>
-                                <circle cx="200" cy="185" r="8" fill="#fbbf24"/>
-                                <line x1="320" y1="220" x2="320" y2="190" stroke="#6b7280" stroke-width="3"/>
-                                <circle cx="320" cy="185" r="8" fill="#fbbf24"/>
+                                <circle cx="280" cy="120" r="8" fill="rgba(255,255,255,0.7)"/>
+                                <rect x="275" y="130" width="10" height="15" fill="rgba(255,255,255,0.7)" rx="4"/>
                                 
-                                {{-- Main illustration - Person with phone --}}
-                                <circle cx="200" cy="80" r="25" fill="#fef2f2"/>
-                                <circle cx="200" cy="75" r="12" fill="#f3e8ff"/>
-                                <rect x="190" y="105" width="20" height="35" fill="#3b82f6" rx="8"/>
-                                <rect x="185" y="115" width="30" height="40" fill="#1f2937" rx="6"/>
-                                <rect x="165" y="125" width="15" height="20" fill="#fbbf24" rx="3"/>
-                                <rect x="220" y="125" width="15" height="20" fill="#fbbf24" rx="3"/>
+                                <circle cx="150" cy="160" r="8" fill="rgba(255,255,255,0.7)"/>
+                                <rect x="145" y="170" width="10" height="15" fill="rgba(255,255,255,0.7)" rx="4"/>
                                 
-                                {{-- Phone --}}
-                                <rect x="175" y="90" width="12" height="20" fill="#1f2937" rx="2"/>
-                                <rect x="177" y="92" width="8" height="12" fill="#3b82f6" rx="1"/>
+                                <circle cx="250" cy="180" r="8" fill="rgba(255,255,255,0.7)"/>
+                                <rect x="245" y="190" width="10" height="15" fill="rgba(255,255,255,0.7)" rx="4"/>
                                 
-                                {{-- Location pins --}}
-                                <circle cx="150" cy="160" r="8" fill="#ef4444"/>
-                                <polygon points="150,165 147,170 153,170" fill="#ef4444"/>
-                                <circle cx="250" cy="175" r="8" fill="#10b981"/>
-                                <polygon points="250,180 247,185 253,185" fill="#10b981"/>
-                                <circle cx="300" cy="155" r="8" fill="#f59e0b"/>
-                                <polygon points="300,160 297,165 303,165" fill="#f59e0b"/>
+                                <circle cx="320" cy="160" r="8" fill="rgba(255,255,255,0.7)"/>
+                                <rect x="315" y="170" width="10" height="15" fill="rgba(255,255,255,0.7)" rx="4"/>
                                 
                                 {{-- Connection lines --}}
-                                <line x1="187" y1="100" x2="150" y2="160" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,3" opacity="0.6"/>
-                                <line x1="187" y1="100" x2="250" y2="175" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,3" opacity="0.6"/>
-                                <line x1="187" y1="100" x2="300" y2="155" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,3" opacity="0.6"/>
+                                <line x1="200" y1="100" x2="125" y2="85" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="200" y1="100" x2="280" y2="125" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="200" y1="100" x2="155" y2="165" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="200" y1="100" x2="255" y2="185" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="4,4"/>
+                                <line x1="200" y1="100" x2="320" y2="165" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="4,4"/>
+                                
+                                {{-- Issue reporting icons floating around --}}
+                                <circle cx="80" cy="50" r="15" fill="rgba(255,255,255,0.2)"/>
+                                <text x="80" y="55" text-anchor="middle" fill="white" font-size="14">🚧</text>
+                                
+                                <circle cx="320" cy="40" r="15" fill="rgba(255,255,255,0.2)"/>
+                                <text x="320" y="45" text-anchor="middle" fill="white" font-size="14">💡</text>
+                                
+                                <circle cx="60" cy="150" r="15" fill="rgba(255,255,255,0.2)"/>
+                                <text x="60" y="155" text-anchor="middle" fill="white" font-size="14">🗑️</text>
+                                
+                                <circle cx="340" cy="200" r="15" fill="rgba(255,255,255,0.2)"/>
+                                <text x="340" y="205" text-anchor="middle" fill="white" font-size="14">🚰</text>
+                                
+                                {{-- Buildings in background --}}
+                                <rect x="50" y="220" width="30" height="60" fill="rgba(255,255,255,0.15)" rx="3"/>
+                                <rect x="90" y="200" width="25" height="80" fill="rgba(255,255,255,0.1)" rx="3"/>
+                                <rect x="280" y="210" width="35" height="70" fill="rgba(255,255,255,0.15)" rx="3"/>
+                                <rect x="325" y="230" width="28" height="50" fill="rgba(255,255,255,0.1)" rx="3"/>
+                                
+                                {{-- Small windows --}}
+                                <rect x="57" y="235" width="4" height="4" fill="rgba(255,255,255,0.3)"/>
+                                <rect x="67" y="235" width="4" height="4" fill="rgba(255,255,255,0.3)"/>
+                                <rect x="57" y="250" width="4" height="4" fill="rgba(255,255,255,0.3)"/>
+                                <rect x="67" y="250" width="4" height="4" fill="rgba(255,255,255,0.3)"/>
+                                
+                                {{-- Decorative dots --}}
+                                <circle cx="40" cy="100" r="2" fill="rgba(255,255,255,0.4)"/>
+                                <circle cx="360" cy="120" r="3" fill="rgba(255,255,255,0.3)"/>
+                                <circle cx="30" cy="180" r="2" fill="rgba(255,255,255,0.4)"/>
+                                <circle cx="370" cy="80" r="2" fill="rgba(255,255,255,0.3)"/>
                             </svg>
 
                             <div class="illustration-content">
-                                <h2>Join Your Community</h2>
-                                <p>Help make your neighborhood better by reporting local issues and tracking their resolution in real-time.</p>
+                                <h2>Join the Community!</h2>
+                                <p>Become part of an active community working together to improve local neighborhoods and make cities better places to live.</p>
                                 
-                                <ul class="feature-list">
-                                    <li><i class="fas fa-map-marker-alt"></i> Report issues within 5km radius</li>
-                                    <li><i class="fas fa-camera"></i> Add photos and descriptions</li>
-                                    <li><i class="fas fa-bell"></i> Get notified on status updates</li>
-                                    <li><i class="fas fa-users"></i> Connect with local community</li>
-                                    <li><i class="fas fa-chart-line"></i> Track resolution progress</li>
+                                <ul class="feature-list d-none d-md-block">
+                                    <li><i class="fas fa-user-plus"></i> Easy registration process</li>
+                                    <li><i class="fas fa-shield-alt"></i> Secure & private data</li>
+                                    <li><i class="fas fa-users"></i> Connect with neighbors</li>
+                                    <li><i class="fas fa-heart"></i> Make a real difference</li>
+                                    <li><i class="fas fa-trophy"></i> Track your impact</li>
                                 </ul>
                             </div>
                         </div>
@@ -466,5 +242,4 @@
             }
         });
     </script>
-</body>
-</html>
+<x-footer />

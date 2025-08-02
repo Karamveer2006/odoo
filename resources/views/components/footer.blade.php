@@ -10,5 +10,10 @@
       $('#mobileMenu').removeClass('active');
       $('#menuOverlay').removeClass('active');
     });
+    $('#toggleTheme').on('click', function () {
+      const current = $('body').attr('data-theme');
+      $('body').attr('data-theme', current === 'dark' ? 'light' : 'dark');
+    });
   });
+  
 </script>
