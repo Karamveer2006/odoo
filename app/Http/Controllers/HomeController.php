@@ -31,7 +31,7 @@ class HomeController extends Controller
     }
     function FetchAllIssues(Request $request)
     {
-        $issues = Issue::query()->with("photos")
+        $issues = Issue::query()->with("photos", "category", "status_updates")
             ->when($request->status, fn($q) => $q->where('status', $request->status))
             ->when($request->category, fn($q) => $q->where('category_id', Crypt::decrypt($request->category)))
             ->when($request->distance, fn($q) => $q->withinDistance($request->latitude, $request->longitude, $request->distance))
@@ -49,7 +49,7 @@ class HomeController extends Controller
         return response()->json($issues);
     }
     public function UserIssue(){
-        $issues = Issue::query()
+        $issues = Issue::query()->with("photos")
         ->when(request('status'), fn($q) => $q->where('status', request('status')))
         ->when(request('category'), fn($q) => $q->where('category_id', request('category')))
         // ->when(request('distance'), fn($q) => $q->withinDistance(request('distance'))) // custom scope
@@ -65,23 +65,29 @@ class HomeController extends Controller
     }
     function IssueView($uri){
         $issue = Issue::with(['category', 'photos', 'status_updates'])
-                     ->findOrFail($id);
+                     ->findOrFail($uri);
         
         // Get related issues in the same area (within 1km radius)
         $relatedIssues = Issue::where('id', '!=', $issue->id)
                              ->where('category_id', $issue->category_id)
                              ->whereRaw("
                                  (6371 * acos(cos(radians(?)) 
-                                 * cos(radians(latitude)) 
-                                 * cos(radians(longitude) - radians(?)) 
+                                 * cos(radians(lat)) 
+                                 * cos(radians(lng) - radians(?)) 
                                  + sin(radians(?)) 
-                                 * sin(radians(latitude)))) < ?
-                             ", [$issue->latitude, $issue->longitude, $issue->latitude, 1])
-                             ->with(['category', 'images'])
+                                 * sin(radians(lat)))) < ?
+                             ", [$issue->lat, $issue->lng, $issue->lat, 1]) // 1km radius
+                             ->with(['category', 'photos'])
                              ->limit(3)
                              ->get();
-
-        return view('issues_view', compact('issue', 'relatedIssues'));
+        var_dump($issue);
+        return view('issue_view', [
+            'title' => $issue->title,
+            'description' => $issue->description,
+            'issue' => $issue,
+            'relatedIssues' => $relatedIssues,
+            'categories' => IssueCategory::all(),
+        ]);
     }
     function ReportIssueView(Request $req){
         if (!$req->session()->has('user_id')) {
@@ -138,6 +144,7 @@ class HomeController extends Controller
             'address' => $request->address,
             'category_id' => Crypt::decrypt($request->category_id),
             'status' => 'reported',
+            "created_at" => now(),
         ]);
         IssuePhoto::insert(array_map(function ($path) use ($issue) {
             return [

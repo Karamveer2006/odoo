@@ -88,6 +88,7 @@
                         <label class="form-label">Search Address</label>
                         <div class="input-group">
                             <input type="text" 
+                                   name="address" 
                                    id="search-address" 
                                    class="form-control @error('address') is-invalid @enderror" 
                                    placeholder="Enter address..."

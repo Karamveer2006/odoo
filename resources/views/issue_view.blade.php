@@ -5,7 +5,7 @@
     <div class="container py-4">
         <!-- Back Navigation -->
         <div class="mb-4">
-            <a href="{{ route('issues.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left"></i> Back to Issues
             </a>
         </div>
@@ -16,10 +16,10 @@
                 <!-- Image Gallery Section -->
                 <div class="col-lg-6">
                     <div class="issue-gallery">
-                        @if($issue->images && count($issue->images) > 0)
+                        @if($issue->photos && count($issue->photos) > 0)
                             <div id="issueDetailCarousel" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    @foreach($issue->images as $index => $image)
+                                    @foreach($issue->photos as $index => $image)
                                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                         <img src="{{ asset('storage/' . $image->path) }}" 
                                              class="d-block w-100" 
@@ -32,7 +32,7 @@
                                     @endforeach
                                 </div>
                                 
-                                @if(count($issue->images) > 1)
+                                @if(count($issue->photos) > 1)
                                 <!-- Controls -->
                                 <button class="carousel-control-prev" type="button" data-bs-target="#issueDetailCarousel" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -45,7 +45,7 @@
                                 
                                 <!-- Indicators -->
                                 <div class="carousel-indicators">
-                                    @foreach($issue->images as $index => $image)
+                                    @foreach($issue->photos as $index => $image)
                                     <button type="button" 
                                             data-bs-target="#issueDetailCarousel" 
                                             data-bs-slide-to="{{ $index }}" 
@@ -65,8 +65,8 @@
                         
                         <!-- Category Badge -->
                         <div class="issue-category-overlay">
-                            <span class="category-badge {{ strtolower($issue->category->name) }}">
-                                {{ strtoupper($issue->category->name) }}
+                            <span class="category-badge {{ strtolower($issue->category?->name) }}">
+                                {{ strtoupper($issue->category?->name) }}
                             </span>
                         </div>
                     </div>
@@ -110,11 +110,11 @@
 
                         <!-- Action Buttons -->
                         <div class="issue-actions">
-                            @if(auth()->check() && auth()->id() == $issue->user_id)
-                            <a href="{{ route('issues.edit', $issue->id) }}" class="btn btn-primary">
+                            {{-- @if(auth()->check() && auth()->id() == $issue->user_id) --}}
+                            {{-- <a href="{{ route('issues.edit', $issue->id) }}" class="btn btn-primary">
                                 <i class="fas fa-edit"></i> Edit Issue
-                            </a>
-                            @endif
+                            </a> --}}
+                            {{-- @endif --}}
                             
                             <button class="btn btn-outline-secondary" onclick="shareIssue()">
                                 <i class="fas fa-share-alt"></i> Share
@@ -156,47 +156,6 @@
         </div>
         @endif
 
-        <!-- Related Issues -->
-        @if($relatedIssues && count($relatedIssues) > 0)
-        <div class="related-issues-section mt-5">
-            <h3 class="mb-4">Related Issues in the Area</h3>
-            <div class="row">
-                @foreach($relatedIssues as $relatedIssue)
-                <div class="col-md-4 mb-3">
-                    <div class="issue-card related-card">
-                        <div class="issue-image">
-                            @if($relatedIssue->images && count($relatedIssue->images) > 0)
-                                <img src="{{ asset('storage/' . $relatedIssue->images->first()->path) }}" 
-                                     alt="{{ $relatedIssue->title }}">
-                            @else
-                                <div class="no-image-placeholder small">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            @endif
-                            <div class="issue-category">
-                                <span class="category-badge {{ strtolower($relatedIssue->category->name) }}">
-                                    {{ strtoupper($relatedIssue->category->name) }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="issue-content">
-                            <h4 class="issue-title">
-                                <a href="{{ route('issues.show', $relatedIssue->id) }}">{{ $relatedIssue->title }}</a>
-                            </h4>
-                            <p class="issue-description">{{ Str::limit($relatedIssue->description, 100) }}</p>
-                            <div class="issue-meta">
-                                <div class="issue-date">
-                                    <i class="fas fa-clock"></i>
-                                    <span>{{ $relatedIssue->created_at->diffForHumans() }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
     </div>
 
     <!-- Image Modal -->

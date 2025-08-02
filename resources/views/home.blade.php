@@ -13,18 +13,20 @@
       <div class="col-md-3 col-6">
         <select class="form-select" id="status-filter">
           <option selected>Status</option>
-          <option value="1">Reported</option>
-          <option value="2">In Progress</option>
-          <option value="3">Resolved</option>
+          <option value="Reported">Reported</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
         </select>
       </div>
       <div class="col-md-3 col-6">
         <select class="form-select" id="distance-filter">
-          <option selected>Distance</option>
           <option value="1">1Km</option>
           <option value="2">3Km</option>
           <option value="3">5Km</option>
         </select>
+      </div>
+      <div class="col-md-1 col-2">
+        <button id="refreshIssuesTrigger" class="btn btn-sm btn-warning "><i class="fas fa-sync-alt"></i></button>
       </div>
     </div>
   </div>
@@ -37,12 +39,12 @@
   </div>
   <script>
     $(document).ready(function () {
-        window.latitude = 23.0225;
-        window.longitude = 72.5714; 
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 window.latitude = position.coords.latitude;
                 window.longitude = position.coords.longitude;
+            loadIssues();
+                
             }, function() {
                 console.warn('Geolocation permission denied or not supported.');
             });
@@ -70,7 +72,8 @@
                         var photos_nav = "";
                         var photos = issue.photos.map(photo => photo.photo_path);
                         if (photos.length === 0) {
-                            // photos = ['assets/images/default-issue.jpg']; // Default image if no photos
+                            photos_content = `<div class="d-flex justify-content-center align-items-center>"<i class="fas fa-image"></i>
+                                <p>No images available</p></div>`; // Default image if no photos
                         }else {
                             photos_content = photos.map((photo, index) => `
                                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
@@ -86,7 +89,9 @@
                             <div class="issue-card">
                                 <div id="${card_id}" class="carousel slide issue-image" data-bs-ride="carousel">
                                     <div class="carousel-inner">
+                                        <a href='issues/${issue.id}'>
                                         ${photos_content}
+                                        </a>
                                     </div>
                                     
                                     <!-- Carousel Controls -->
@@ -106,21 +111,21 @@
                                     
                                     <!-- Category Badge -->
                                     <div class="issue-category">
-                                        <span class="category-badge roads">ROADS</span>
+                                        <span class="category-badge roads">${issue.status}</span>
                                     </div>
                                 </div>
                                 
                                 <div class="issue-content">
-                                    <h3 class="issue-title">Large pothole on Main Street</h3>
-                                    <p class="issue-description">Deep pothole near the intersection of Main St and Oak Ave causing vehicle damage</p>
+                                    <h3 class="issue-title"><a href='issues/${issue.id}' class='text-dark text-decoration-none'>${issue.title}</a></h3>
+                                    <p class="issue-description">${issue.description.substring(0,70)}</p>
                                     <div class="issue-meta">
                                         <div class="issue-location">
                                             <i class="fas fa-map-marker-alt"></i>
-                                            <span>Main Street & Oak Avenue</span>
+                                            <span>${issue.address}</span>
                                         </div>
                                         <div class="issue-date">
                                             <i class="fas fa-clock"></i>
-                                            <span>1/30/2025 04:00 PM • Reported</span>
+                                            <span>${issue.created_at} • ${issue.category?.name}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +140,12 @@
                 }
             });
         }
-        loadIssues();
+        $("#refreshIssuesTrigger").click(function () {
+            loadIssues();
+        });
+        $("#category-filter, #status-filter, #distance-filter").change(function () {
+            loadIssues();
+        })
     });
   </script>
 <x-footer />

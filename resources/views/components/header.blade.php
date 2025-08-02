@@ -29,7 +29,7 @@
                         <a class="text-dark text-decoration-none" href="{{route('issue.report')}}">Report new issue</a>
                         <a class="text-dark text-decoration-none" href="{{route('profile')}}">Profile</a>
                     @else
-                    {{Session::get("user_id") ?? "k"}}
+                    {{-- {{Session::get("user_id") ?? "k"}} --}}
                         <a class="text-dark text-decoration-none fw-semibold" href="{{route("login")}}">Login</a>
                         <a class="text-dark text-decoration-none fw-semibold" href="{{route("register")}}">Register</a>
                     @endif
